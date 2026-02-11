@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="assets/icon.jpg" type="image/jpeg" />
+    <link rel="stylesheet" href="assets/main.css" />
+    <script defer type="text/javascript" src="assets/main.js"></script>
+
+    <title>Check in</title>
+  </head>
+  <body>
+    <header class="header">
+      <a
+        href="https://holmesportfolio.co.uk"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <img
+          src="assets/HolmesPortfolio-logo.jpg"
+          alt="Holmes Portfolio"
+          class="business-logo"
+        />
+      </a>
+    </header>
+    <!-- Main content buttons -->
+    <main id="main">
+      <h1>Check in App</h1>
+      <div class="hp-container">
+        <div class="hp-checkedin-buttons hidden">
+          <button class="hp-check-in hp-buttons" type="button">Check in</button>
+          <button class="hp-check-out hp-buttons" type="button">
+            Check out
+          </button>
+        </div>
+
+        <div class="hp-check-out-search hidden">
+          <form class="checked-in-search">
+            <input
+              type="text"
+              class="search-field hp-field"
+              name="search-reg"
+              maxlength="7"
+              autocomplete="off"
+              placeholder="AA51 AAA"
+            />
+            <button class="checked-in-search-button" type="button">
+              Search
+            </button>
+          </form>
+        </div>
+        <button class="hp-close-view hp-buttons" type="button">Back</button>
+        <div class="hp-checkin-form">
+          <!-- fields and form -->
+          <form class="visitor">
+            <div class="visitor-fields">
+              <h3>(Enter) Your details</h3>
+              <label for="title">Title</label>
+              <input
+                value="MR"
+                maxlength="6"
+                required
+                name="title"
+                id="title"
+                type="text"
+              />
+              <label for="fullname">Name</label>
+              <input
+                value="David"
+                required
+                maxlength="20"
+                name="fullname"
+                id="fullname"
+                type="text"
+              />
+              <label for="carreg">Enter a valid UK registration</label>
+              <small id="carreg-hint"> Example: AA51 AAA </small>
+              <input
+                aria-describedby="carreg-hint"
+                value="AA51 AAA"
+                required
+                maxlength="8"
+                pattern="^[A-Z]{2}[0-9]{2}\s?[A-Z]{3}$"
+                name="carreg"
+                id="carreg"
+                type="text"
+              />
+              <input value="09/02/2026" name="checkin-time" type="text" />
+              <input
+                value="09/02/2026"
+                hidden
+                name="checkout-time"
+                type="text"
+              />
+              <button class="hp-submit hp-buttons" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="info">
+        <h3>
+          This is a demo, there is no data stored. A simple refresh will drop
+          all data.
+        </h3>
+        <p>
+          This web application was created to showcase and practise JavaScript
+          skills.
+        </p>
+        <ul>
+          <li>It will have a check-in and check-out button</li>
+          <li>Collect some data</li>
+          <li>Record the time in and out automatically</li>
+        </ul>
+        <p>
+          When a vehicle registration is entered, the system uses an external
+          API to retrieve vehicle details. All visit data can be stored securely
+          within a database (no data is stored in the demo version).
+        </p>
+        <p>This product also keeps in mind GDPR and WCAG</p>
+
+        <p>
+          This application is designed to be used in a reception environment
+          with staff monitoring it, such as a tablet and kept on a local
+          network.
+        </p>
+      </div>
+    </main>
+    <p class="hp-copyright">
+      Copyright © 2026
+      <a
+        href="https://holmesportfolio.co.uk"
+        rel="noopener noreferrer"
+        target="_blank"
+        >HolmesPortfolio</a
+      >
+      - Project created to demo JavaScript
+    </p>
+  </body>
+</html>

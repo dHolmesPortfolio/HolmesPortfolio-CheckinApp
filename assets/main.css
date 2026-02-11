@@ -1,0 +1,264 @@
+/*
+Name: HolmesPortfolio checkin app
+Description: portfolio app
+Author: David Holmes
+Copyright: 2026 David Holmes
+Author URI: https://www.holmesportfolio.co.uk
+*/
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+              Main
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.info ul {
+  list-style: none;
+}
+
+.info li {
+  position: relative;
+  padding-left: 1.5em;
+}
+
+.info li::before {
+  content: "🐾";
+  position: absolute;
+  left: 0;
+}
+
+body {
+  min-height: 50vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #a9f1ff, #85ebff);
+}
+main {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.info p,
+li {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: #000000;
+  font-weight: 600;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  color: #620499;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding: 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h5 {
+  font-size: 19px;
+}
+
+h6 {
+  font-size: 18px;
+}
+
+.visitor-fields input {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+*:focus-visible {
+  outline: 5px solid #ce13c4 !important;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+              main end
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+              containers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.hp-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  padding: 2%;
+  margin: 2%;
+  background-color: #ced3f3;
+  border-radius: 6px;
+  width: fit-content;
+  max-width: 95vw;
+  min-width: min(440px, 95vw);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.hp-checkedin-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.visitor-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+              containers end
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+         Buttons     
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.hp-buttons,
+.checked-in-search-button {
+  background: linear-gradient(135deg, #c8f4fd, #7bcddd);
+  color: #000000;
+  border: 1px solid #014a58;
+  padding: 0.5em 0.8em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 6px;
+}
+.hp-buttons:hover,
+.hp-buttons:focus-visible,
+.checked-in-search-button:hover,
+.checked-in-search-button:focus-visible {
+  color: #ffffff;
+  background: linear-gradient(135deg, #288a9e, #3dd6f5);
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.checked-in-search-button {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  border: none;
+  font-weight: 600;
+}
+
+.hp-close-view {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+}
+
+.hp-submit {
+  align-self: flex-end;
+  width: auto;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+         Buttons end     
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+         opened frame    
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+         opened frame end
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+
+.hp-copyright a:hover {
+  color: #1d7d91;
+}
+
+.hp-copyright {
+  position: relative;
+  text-align: center;
+  font-weight: bold;
+}
+
+.business-logo {
+  width: 180px;
+  height: auto;
+}
+.checked-in-search {
+  position: relative;
+  width: 100%;
+}
+
+.hp-check-out-search {
+  display: flex;
+  width: 100%;
+}
+
+.search-field {
+  flex: 1;
+  width: 100%;
+  padding: 10px 95px 10px 10px;
+  border: 2px solid #307ca9;
+}
+
+.hp-checkin-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hp-field {
+  border: 2px solid #307ca9;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.visitor-fields label {
+  font-weight: bold;
+}
+
+@media (max-width: 480px) {
+  .hp-checkedin-buttons {
+    flex-direction: column;
+  }
+}
+
+.hidden {
+  display: none;
+}
