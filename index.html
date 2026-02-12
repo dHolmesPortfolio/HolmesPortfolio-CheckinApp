@@ -27,7 +27,7 @@
     <main id="main">
       <h1>Check in App</h1>
       <div class="hp-container">
-        <div class="hp-checkedin-buttons hidden">
+        <div class="hp-checkedin-buttons">
           <button class="hp-check-in hp-buttons" type="button">Check in</button>
           <button class="hp-check-out hp-buttons" type="button">
             Check out
@@ -49,10 +49,12 @@
             </button>
           </form>
         </div>
-        <button class="hp-close-view hp-buttons" type="button">Back</button>
+        <button class="hp-close-view hp-buttons hidden" type="button">
+          Back
+        </button>
         <div class="hp-checkin-form">
           <!-- fields and form -->
-          <form class="visitor">
+          <form class="visitor hidden">
             <div class="visitor-fields">
               <h3>(Enter) Your details</h3>
               <label for="title">Title</label>
