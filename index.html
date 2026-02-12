@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="assets/icon.jpg" type="image/jpeg" />
     <link rel="stylesheet" href="assets/main.css" />
-    <script defer type="text/javascript" src="assets/main.js"></script>
+    <script defer src="assets/main.js"></script>
 
     <title>Check in</title>
   </head>
@@ -56,7 +56,7 @@
           <!-- fields and form -->
           <form class="visitor hidden">
             <div class="visitor-fields">
-              <h3>(Enter) Your details</h3>
+              <h3 class="your-info">(Enter) Your details</h3>
               <label for="title">Title</label>
               <input
                 value="MR"
@@ -87,13 +87,19 @@
                 id="carreg"
                 type="text"
               />
+              <div class="car-info"></div>
               <input value="09/02/2026" name="checkin-time" type="text" />
-              <input
-                value="09/02/2026"
-                hidden
-                name="checkout-time"
-                type="text"
-              />
+              <div class="for-checkout">
+                <label class="checkout-toggle">Check out</label>
+                <input type="checkbox" id="timeout" />
+
+                <input
+                  value="09/02/2026"
+                  hidden
+                  name="checkout-time"
+                  type="text"
+                />
+              </div>
               <button class="hp-submit hp-buttons" type="submit">Submit</button>
             </div>
           </form>

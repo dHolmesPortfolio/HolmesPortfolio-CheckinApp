@@ -7,38 +7,75 @@ Author URI: https://www.holmesportfolio.co.uk
 */
 "use strict";
 
+//tracks current mode
+let trackMode = "start";
+
+// selectors
+const youInfoH = document.querySelector(".your-info");
 const checkinButtons = document.querySelector(".hp-checkedin-buttons");
 const closeView = document.querySelector(".hp-close-view");
 const search = document.querySelector(".hp-check-out-search");
 const vDetails = document.querySelector(".visitor");
+const forcheckout = document.querySelector(".for-checkout");
+const searchButton = document.querySelector(".checked-in-search-button");
+const SubmitButton = document.querySelector(".hp-submit");
+
+// change heading
+function infoh(t) {
+  youInfoH.textContent = t;
+}
 
 checkinButtons.addEventListener("click", function (e) {
-  //return if nothing pressed
   const checkBtns = e.target.closest("button");
+  //return if nothing pressed
   if (!checkBtns) return;
 
   if (checkBtns.classList.contains("hp-check-in")) {
-    checkinButtons.classList.add("hidden");
-    search.classList.add("hidden");
-    closeView.classList.remove("hidden");
-    vDetails.classList.remove("hidden");
-    console.log("check in");
+    checkIn();
   }
 
   if (checkBtns.classList.contains("hp-check-out")) {
-    checkinButtons.classList.add("hidden");
-    search.classList.remove("hidden");
-    closeView.classList.remove("hidden");
-    vDetails.classList.add("hidden");
-    console.log("check out");
+    checkOut();
   }
 });
 
-closeView.addEventListener("click", function () {
+closeView.addEventListener("click", startView);
+
+// private group for startView
+function startView() {
   checkinButtons.classList.remove("hidden");
   search.classList.add("hidden");
   closeView.classList.add("hidden");
   vDetails.classList.add("hidden");
+  trackMode = "start";
+}
+// private group for checkin
+function checkIn() {
+  infoh("Enter your details");
+  checkinButtons.classList.add("hidden");
+  search.classList.add("hidden");
+  forcheckout.classList.add("hidden");
+  closeView.classList.remove("hidden");
+  vDetails.classList.remove("hidden");
+  trackMode = "check in";
+}
+//private group for checkout
+function checkOut() {
+  infoh("Your details");
+  checkinButtons.classList.add("hidden");
+  search.classList.remove("hidden");
+  forcheckout.classList.remove("hidden");
+  closeView.classList.remove("hidden");
+  vDetails.classList.add("hidden");
+  trackMode = "check out";
+}
 
-  console.log("check in");
+searchButton.addEventListener("click", function (e) {
+  // do last (loads form with data. must disable form)
 });
+
+SubmitButton.addEventListener("click", function (e) {
+  // add to prevent default for submit
+});
+
+startView();
