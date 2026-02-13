@@ -22,11 +22,8 @@ const SubmitButton = document.querySelector(".hp-submit");
 const allFields = document.querySelectorAll(".visitor input");
 const form = document.querySelector(".visitor");
 const searchField = document.querySelector(".search-field");
-
+const thankYouM = document.querySelector(".Thanks");
 // change heading
-function infoh(t) {
-  youInfoH.textContent = t;
-}
 
 checkinButtons.addEventListener("click", function (e) {
   const checkBtns = e.target.closest("button");
@@ -36,7 +33,6 @@ checkinButtons.addEventListener("click", function (e) {
   if (checkBtns.classList.contains("hp-check-in")) {
     checkIn();
   }
-
   if (checkBtns.classList.contains("hp-check-out")) {
     searchMode();
   }
@@ -44,17 +40,22 @@ checkinButtons.addEventListener("click", function (e) {
 
 closeView.addEventListener("click", startView);
 
-// group for startView
+// function for startView
 function startView() {
   checkinButtons.classList.remove("hidden");
   search.classList.add("hidden");
   closeView.classList.add("hidden");
   vDetails.classList.add("hidden");
+  thankYouM.classList.add("hidden");
   trackMode = "start";
 }
-//group for checkin
+
+//function for checkin
 function checkIn() {
-  infoh("Enter your details");
+  allFields.forEach((input) => {
+    input.readOnly = false;
+  });
+  youInfoH.textContent = "Enter your details";
   form.classList.remove("visitor-checkout");
   SubmitButton.classList.remove("hidden");
   checkinButtons.classList.add("hidden");
@@ -62,14 +63,11 @@ function checkIn() {
   forcheckout.classList.add("hidden");
   closeView.classList.remove("hidden");
   vDetails.classList.remove("hidden");
-  trackMode = "check in";
 
-  allFields.forEach((input) => {
-    input.readOnly = false;
-  });
+  trackMode = "check in";
 }
 
-//group for search
+//function for search/checkout
 function searchMode() {
   SubmitButton.classList.add("hidden");
   checkinButtons.classList.add("hidden");
@@ -87,13 +85,13 @@ searchForm.addEventListener("submit", function (e) {
   );
 
   const checkoutDetails = searched;
-  // pass checkout the data as param
+  if (!checkoutDetails) return; // pass checkout the data from the search as a param
   checkOut(checkoutDetails);
 });
 
-//group for checkout
+//function for checkout
 function checkOut(info) {
-  infoh("Your details");
+  youInfoH.textContent = "Your details";
   // call function to fill in the form
   fillform(info);
 
@@ -112,6 +110,19 @@ function checkOut(info) {
   trackMode = "check out";
 }
 
+function thankYou(n) {
+  SubmitButton.classList.add("hidden");
+  checkinButtons.classList.add("hidden");
+  search.classList.add("hidden");
+  forcheckout.classList.add("hidden");
+  closeView.classList.remove("hidden");
+  vDetails.classList.add("hidden");
+  thankYouM.classList.remove("hidden");
+  thankYouM.textContent = `Thank you ${n} for checking in ✔️`;
+  trackMode = "Checked in";
+}
+
+// fill form used for checkout
 function fillform(info) {
   if (!info) return;
 
@@ -123,6 +134,7 @@ function fillform(info) {
   });
 }
 
+// collects and stores data on submission (temp on demo)
 form.addEventListener("submit", function (e) {
   // add to prevent default for submit
   e.preventDefault();
@@ -131,6 +143,12 @@ form.addEventListener("submit", function (e) {
   const data = Object.fromEntries(dataArr);
   data.carreg = data.carreg.trim().toUpperCase();
   visitors.push(data);
+  thankYou(data.fullname);
 });
 
+function date(d) {
+  const day = d.getDate();
+  const month = d.getMonth() + 1;
+  const year = d.getFullYear();
+}
 startView();
