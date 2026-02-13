@@ -43,7 +43,7 @@ checkinButtons.addEventListener("click", function (e) {
 
 closeView.addEventListener("click", startView);
 
-// private group for startView
+// group for startView
 function startView() {
   checkinButtons.classList.remove("hidden");
   search.classList.add("hidden");
@@ -51,7 +51,7 @@ function startView() {
   vDetails.classList.add("hidden");
   trackMode = "start";
 }
-// private group for checkin
+//group for checkin
 function checkIn() {
   infoh("Enter your details");
   SubmitButton.classList.remove("hidden");
@@ -66,7 +66,7 @@ function checkIn() {
     input.readOnly = false;
   });
 }
-//private group for checkout
+//group for checkout
 function checkOut() {
   infoh("Your details");
   SubmitButton.classList.add("hidden");
