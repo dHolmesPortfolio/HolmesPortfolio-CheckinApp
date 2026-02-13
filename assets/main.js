@@ -12,6 +12,7 @@ let trackMode = "start";
 let visitors = [];
 // selectors
 const youInfoH = document.querySelector(".your-info");
+const CheckinTime = document.querySelector(".visitor-check-time");
 const checkinButtons = document.querySelector(".hp-checkedin-buttons");
 const closeView = document.querySelector(".hp-close-view");
 const search = document.querySelector(".hp-check-out-search");
@@ -53,6 +54,12 @@ function startView() {
 //function for checkin
 function checkIn() {
   allFields.forEach((input) => {
+    if (
+      input.type === "checkbox" ||
+      input.hidden ||
+      input.name === "checkinTime"
+    )
+      return;
     input.readOnly = false;
   });
   youInfoH.textContent = "Enter your details";
@@ -63,6 +70,7 @@ function checkIn() {
   forcheckout.classList.add("hidden");
   closeView.classList.remove("hidden");
   vDetails.classList.remove("hidden");
+  CheckinTime.value = dateT();
 
   trackMode = "check in";
 }
@@ -85,7 +93,8 @@ searchForm.addEventListener("submit", function (e) {
   );
 
   const checkoutDetails = searched;
-  if (!checkoutDetails) return; // pass checkout the data from the search as a param
+  if (!checkoutDetails) return;
+  // pass checkout the data from the search as a param
   checkOut(checkoutDetails);
 });
 
@@ -146,9 +155,13 @@ form.addEventListener("submit", function (e) {
   thankYou(data.fullname);
 });
 
-function date(d) {
-  const day = d.getDate();
-  const month = d.getMonth() + 1;
+function dateT() {
+  const d = new Date();
+  const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
   const year = d.getFullYear();
+  const h = String(d.getHours()).padStart(2, "0");
+  const m = String(d.getMinutes()).padStart(2, "0");
+  return `${day}-${month}-${year} ${h}:${m}`;
 }
 startView();

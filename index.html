@@ -98,14 +98,15 @@
                 type="text"
               />
               <div class="car-info"></div>
-              <input value="09/02/2026" name="checkinTime" type="text" />
+              <input class="visitor-check-time" value="" name="checkinTime" readonly aria-readonly="true" type="text" />
               <div class="for-checkout">
-                <label class="checkoutToggle">Check out</label>
+                <label for="timeout"class="checkoutToggle">Check out</label>
                 <input type="checkbox" id="timeout" />
 
                 <input
-                  value="09/02/2026"
+                  value=""
                   hidden
+                   readonly aria-readonly="true" 
                   name="checkoutTime"
                   type="text"
                 />
