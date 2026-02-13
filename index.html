@@ -32,21 +32,21 @@
           <button class="hp-check-out hp-buttons" type="button">
             Check out
           </button>
+         
         </div>
 
         <div class="hp-check-out-search hidden">
+           <h2 class="your-info-out">Enter your car registration to checkout</h3>
           <form class="checked-in-search">
             <input
               type="text"
               class="search-field hp-field"
               name="search-reg"
-              maxlength="7"
+              maxlength="8"
               autocomplete="off"
               placeholder="AA51 AAA"
             />
-            <button class="checked-in-search-button" type="button">
-              Search
-            </button>
+            <button class="checked-in-search-button" type="submit">Find</button>
           </form>
         </div>
         <button class="hp-close-view hp-buttons hidden" type="button">
@@ -56,7 +56,7 @@
           <!-- fields and form -->
           <form class="visitor hidden">
             <div class="visitor-fields">
-              <h3 class="your-info">(Enter) Your details</h3>
+              <h2 class="your-info"></h3>
               <label for="title">Title</label>
               <input
                 value="MR"
@@ -75,6 +75,15 @@
                 id="fullname"
                 type="text"
               />
+              <label for="mobile">Mobile number</label>
+              <input
+                value="0798*******"
+                required
+                maxlength="20"
+                name="mobile"
+                id="mobile"
+                type="text"
+              />
               <label for="carreg">Enter a valid UK registration</label>
               <small id="carreg-hint"> Example: AA51 AAA </small>
               <input
@@ -88,15 +97,15 @@
                 type="text"
               />
               <div class="car-info"></div>
-              <input value="09/02/2026" name="checkin-time" type="text" />
+              <input value="09/02/2026" name="checkinTime" type="text" />
               <div class="for-checkout">
-                <label class="checkout-toggle">Check out</label>
+                <label class="checkoutToggle">Check out</label>
                 <input type="checkbox" id="timeout" />
 
                 <input
                   value="09/02/2026"
                   hidden
-                  name="checkout-time"
+                  name="checkoutTime"
                   type="text"
                 />
               </div>

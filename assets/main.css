@@ -126,6 +126,9 @@ h6 {
   margin-right: auto;
 }
 
+.your-info-out {
+}
+
 .header {
   display: flex;
   justify-content: center;
@@ -227,6 +230,12 @@ h6 {
 
 .hp-check-out-search {
   display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 70%;
+}
+
+.hp-check-out-search .search-field {
 }
 
 .search-field {

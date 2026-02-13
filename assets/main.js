@@ -9,7 +9,7 @@ Author URI: https://www.holmesportfolio.co.uk
 
 //tracks current mode
 let trackMode = "start";
-
+let visitors = [];
 // selectors
 const youInfoH = document.querySelector(".your-info");
 const checkinButtons = document.querySelector(".hp-checkedin-buttons");
@@ -17,10 +17,11 @@ const closeView = document.querySelector(".hp-close-view");
 const search = document.querySelector(".hp-check-out-search");
 const vDetails = document.querySelector(".visitor");
 const forcheckout = document.querySelector(".for-checkout");
-const searchButton = document.querySelector(".checked-in-search-button");
+const searchForm = document.querySelector(".checked-in-search");
 const SubmitButton = document.querySelector(".hp-submit");
 const allFields = document.querySelectorAll(".visitor input");
 const form = document.querySelector(".visitor");
+const searchField = document.querySelector(".search-field");
 
 // change heading
 function infoh(t) {
@@ -78,19 +79,28 @@ function checkOut() {
   trackMode = "check out";
 
   allFields.forEach((input) => {
+    if (input.type === "checkbox" || input.hidden) return;
     input.readOnly = true;
   });
 }
 
-searchButton.addEventListener("click", function (e) {
-  // do last (loads form with data. must disable form)
+searchForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const searched = visitors.find(
+    (v) => v.carreg === searchField.value.trim().toUpperCase(),
+  );
+  console.log(searched);
+  checkoutDetails = searched;
 });
 
-SubmitButton.addEventListener("click", function (e) {
+form.addEventListener("submit", function (e) {
   // add to prevent default for submit
   e.preventDefault();
-  const data = [...new FormData(form)];
-  console.log(data);
+
+  const dataArr = [...new FormData(form)];
+  const data = Object.fromEntries(dataArr);
+  data.carreg = data.carreg.trim().toUpperCase();
+  visitors.push(data);
 });
 
 startView();
