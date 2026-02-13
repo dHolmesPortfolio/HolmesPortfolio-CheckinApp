@@ -60,7 +60,7 @@
               <h2 class="your-info"></h3>
               <label for="title">Title</label>
               <input
-                value="MR"
+                value=""
                 maxlength="6"
                 required
                 name="title"
@@ -69,7 +69,7 @@
               />
               <label for="fullname">Name</label>
               <input
-                value="David"
+                value=""
                 required
                 maxlength="20"
                 name="fullname"
@@ -78,7 +78,7 @@
               />
               <label for="mobile">Mobile number</label>
               <input
-                value="0798*******"
+                value=""
                 required
                 maxlength="20"
                 name="mobile"
@@ -89,7 +89,7 @@
               <small id="carreg-hint"> Example: AA51 AAA </small>
               <input
                 aria-describedby="carreg-hint"
-                value="AA51 AAA"
+                value=""
                 required
                 maxlength="8"
                 pattern="^[A-Z]{2}[0-9]{2}\s?[A-Z]{3}$"
@@ -101,12 +101,13 @@
               <input class="visitor-check-time" value="" name="checkinTime" readonly aria-readonly="true" type="text" />
               <div class="for-checkout">
                 <label for="timeout"class="checkoutToggle">Check out</label>
-                <input type="checkbox" id="timeout" />
+                <input type="checkbox" class="checkout-toggle" id="timeout" />
 
                 <input
                   value=""
                   hidden
-                   readonly aria-readonly="true" 
+                   readonly aria-readonly="true"
+                   class="visitor-checkout-time" 
                   name="checkoutTime"
                   type="text"
                 />

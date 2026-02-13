@@ -13,6 +13,8 @@ let visitors = [];
 // selectors
 const youInfoH = document.querySelector(".your-info");
 const CheckinTime = document.querySelector(".visitor-check-time");
+const CheckOutTime = document.querySelector(".visitor-checkout-time");
+const toggleOut = document.querySelector(".checkout-toggle");
 const checkinButtons = document.querySelector(".hp-checkedin-buttons");
 const closeView = document.querySelector(".hp-close-view");
 const search = document.querySelector(".hp-check-out-search");
@@ -24,23 +26,8 @@ const allFields = document.querySelectorAll(".visitor input");
 const form = document.querySelector(".visitor");
 const searchField = document.querySelector(".search-field");
 const thankYouM = document.querySelector(".Thanks");
-// change heading
 
-checkinButtons.addEventListener("click", function (e) {
-  const checkBtns = e.target.closest("button");
-  //return if nothing pressed
-  if (!checkBtns) return;
-
-  if (checkBtns.classList.contains("hp-check-in")) {
-    checkIn();
-  }
-  if (checkBtns.classList.contains("hp-check-out")) {
-    searchMode();
-  }
-});
-
-closeView.addEventListener("click", startView);
-
+// routes
 // function for startView
 function startView() {
   checkinButtons.classList.remove("hidden");
@@ -86,18 +73,6 @@ function searchMode() {
   trackMode = "check out";
 }
 
-searchForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  const searched = visitors.find(
-    (v) => v.carreg === searchField.value.trim().toUpperCase(),
-  );
-
-  const checkoutDetails = searched;
-  if (!checkoutDetails) return;
-  // pass checkout the data from the search as a param
-  checkOut(checkoutDetails);
-});
-
 //function for checkout
 function checkOut(info) {
   youInfoH.textContent = "Your details";
@@ -119,7 +94,20 @@ function checkOut(info) {
   trackMode = "check out";
 }
 
-function thankYou(n) {
+// collects and stores data on submission (temp on demo)
+form.addEventListener("submit", function (e) {
+  // add to prevent default for submit
+  e.preventDefault();
+
+  const dataArr = [...new FormData(form)];
+  const data = Object.fromEntries(dataArr);
+  data.carreg = data.carreg.trim().toUpperCase();
+  visitors.push(data);
+  thankYou(data.fullname, "in");
+  form.reset();
+});
+
+function thankYou(n, o) {
   SubmitButton.classList.add("hidden");
   checkinButtons.classList.add("hidden");
   search.classList.add("hidden");
@@ -127,9 +115,52 @@ function thankYou(n) {
   closeView.classList.remove("hidden");
   vDetails.classList.add("hidden");
   thankYouM.classList.remove("hidden");
-  thankYouM.textContent = `Thank you ${n} for checking in ✔️`;
+  thankYouM.textContent = `Thank you ${n} for checking ${o} ✔️`;
   trackMode = "Checked in";
 }
+
+// search submission actions
+searchForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const searched = visitors.find(
+    (v) => v.carreg === searchField.value.trim().toUpperCase(),
+  );
+
+  const checkoutDetails = searched;
+  if (!checkoutDetails) return;
+  // pass checkout the data from the search as a param
+  checkOut(checkoutDetails);
+});
+
+// work out starting route
+checkinButtons.addEventListener("click", function (e) {
+  const checkBtns = e.target.closest("button");
+  //return if nothing pressed
+  if (!checkBtns) return;
+
+  if (checkBtns.classList.contains("hp-check-in")) {
+    checkIn();
+  }
+  if (checkBtns.classList.contains("hp-check-out")) {
+    searchMode();
+  }
+});
+
+// check out Time
+
+toggleOut.addEventListener("click", function () {
+  CheckOutTime.value = dateT();
+
+  const remove = form.querySelector('[name="carreg"]').value;
+  const findr = visitors.findIndex((v) => v.carreg === remove);
+
+  if (findr === -1) return;
+  visitors.splice(findr, 1);
+  form.reset();
+  thankYou(data.fullname, "out");
+});
+
+closeView.addEventListener("click", startView);
 
 // fill form used for checkout
 function fillform(info) {
@@ -143,18 +174,7 @@ function fillform(info) {
   });
 }
 
-// collects and stores data on submission (temp on demo)
-form.addEventListener("submit", function (e) {
-  // add to prevent default for submit
-  e.preventDefault();
-
-  const dataArr = [...new FormData(form)];
-  const data = Object.fromEntries(dataArr);
-  data.carreg = data.carreg.trim().toUpperCase();
-  visitors.push(data);
-  thankYou(data.fullname);
-});
-
+// get the date right now
 function dateT() {
   const d = new Date();
   const day = String(d.getDate()).padStart(2, "0");
@@ -164,4 +184,6 @@ function dateT() {
   const m = String(d.getMinutes()).padStart(2, "0");
   return `${day}-${month}-${year} ${h}:${m}`;
 }
+
+//start the app
 startView();
