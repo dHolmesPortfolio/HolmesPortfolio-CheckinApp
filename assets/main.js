@@ -19,6 +19,8 @@ const vDetails = document.querySelector(".visitor");
 const forcheckout = document.querySelector(".for-checkout");
 const searchButton = document.querySelector(".checked-in-search-button");
 const SubmitButton = document.querySelector(".hp-submit");
+const allFields = document.querySelectorAll(".visitor input");
+const form = document.querySelector(".visitor");
 
 // change heading
 function infoh(t) {
@@ -52,22 +54,32 @@ function startView() {
 // private group for checkin
 function checkIn() {
   infoh("Enter your details");
+  SubmitButton.classList.remove("hidden");
   checkinButtons.classList.add("hidden");
   search.classList.add("hidden");
   forcheckout.classList.add("hidden");
   closeView.classList.remove("hidden");
   vDetails.classList.remove("hidden");
   trackMode = "check in";
+
+  allFields.forEach((input) => {
+    input.readOnly = false;
+  });
 }
 //private group for checkout
 function checkOut() {
   infoh("Your details");
+  SubmitButton.classList.add("hidden");
   checkinButtons.classList.add("hidden");
   search.classList.remove("hidden");
   forcheckout.classList.remove("hidden");
   closeView.classList.remove("hidden");
   vDetails.classList.add("hidden");
   trackMode = "check out";
+
+  allFields.forEach((input) => {
+    input.readOnly = true;
+  });
 }
 
 searchButton.addEventListener("click", function (e) {
@@ -76,6 +88,9 @@ searchButton.addEventListener("click", function (e) {
 
 SubmitButton.addEventListener("click", function (e) {
   // add to prevent default for submit
+  e.preventDefault();
+  const data = [...new FormData(form)];
+  console.log(data);
 });
 
 startView();
