@@ -38,7 +38,7 @@ checkinButtons.addEventListener("click", function (e) {
   }
 
   if (checkBtns.classList.contains("hp-check-out")) {
-    checkOut();
+    searchMode();
   }
 });
 
@@ -55,6 +55,7 @@ function startView() {
 //group for checkin
 function checkIn() {
   infoh("Enter your details");
+  form.classList.remove("visitor-checkout");
   SubmitButton.classList.remove("hidden");
   checkinButtons.classList.add("hidden");
   search.classList.add("hidden");
@@ -67,21 +68,16 @@ function checkIn() {
     input.readOnly = false;
   });
 }
-//group for checkout
-function checkOut() {
-  infoh("Your details");
+
+//group for search
+function searchMode() {
   SubmitButton.classList.add("hidden");
   checkinButtons.classList.add("hidden");
   search.classList.remove("hidden");
-  forcheckout.classList.remove("hidden");
+  forcheckout.classList.add("hidden");
   closeView.classList.remove("hidden");
   vDetails.classList.add("hidden");
   trackMode = "check out";
-
-  allFields.forEach((input) => {
-    if (input.type === "checkbox" || input.hidden) return;
-    input.readOnly = true;
-  });
 }
 
 searchForm.addEventListener("submit", function (e) {
@@ -89,9 +85,43 @@ searchForm.addEventListener("submit", function (e) {
   const searched = visitors.find(
     (v) => v.carreg === searchField.value.trim().toUpperCase(),
   );
-  console.log(searched);
-  checkoutDetails = searched;
+
+  const checkoutDetails = searched;
+  // pass checkout the data as param
+  checkOut(checkoutDetails);
 });
+
+//group for checkout
+function checkOut(info) {
+  infoh("Your details");
+  // call function to fill in the form
+  fillform(info);
+
+  allFields.forEach((input) => {
+    if (input.type === "checkbox" || input.hidden) return;
+    input.readOnly = true;
+  });
+  SubmitButton.classList.add("hidden");
+  checkinButtons.classList.add("hidden");
+  search.classList.add("hidden");
+  forcheckout.classList.remove("hidden");
+  closeView.classList.remove("hidden");
+  vDetails.classList.remove("hidden");
+  search.classList.add("visitor-fields-checkout");
+  form.classList.add("visitor-checkout");
+  trackMode = "check out";
+}
+
+function fillform(info) {
+  if (!info) return;
+
+  allFields.forEach((input) => {
+    if (!input.name) return;
+
+    input.value = info[input.name] ?? "";
+    return;
+  });
+}
 
 form.addEventListener("submit", function (e) {
   // add to prevent default for submit

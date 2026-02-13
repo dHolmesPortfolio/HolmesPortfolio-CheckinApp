@@ -95,6 +95,12 @@ h6 {
   box-sizing: border-box;
 }
 
+.visitor-checkout input {
+  background-color: rgb(236, 233, 233);
+  border: none;
+  font-weight: 600;
+}
+
 *:focus-visible {
   outline: 5px solid #ce13c4 !important;
 }
