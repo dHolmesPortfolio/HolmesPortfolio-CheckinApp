@@ -37,16 +37,18 @@
 
         <div class="hp-check-out-search hidden">
            <h2 class="your-info-out">Enter your car registration to checkout</h3>
-          <form class="checked-in-search">
+          <form class="checked-in-search" novalidate>
             <input
               type="text"
               class="search-field hp-field"
               name="search-reg"
               maxlength="8"
               autocomplete="off"
+              aria-describedby="errorFind"
               placeholder="AA51 AAA"
             />
             <button class="checked-in-search-button" type="submit">Find</button>
+            <p  id="errorFind" class="error findError" hidden></p>
           </form>
         </div>
         <button class="hp-close-view hp-buttons hidden" type="button">
@@ -55,7 +57,7 @@
         <div class="Thanks"></div>
         <div class="hp-checkin-form">
           <!-- fields and form -->
-          <form class="visitor hidden">
+          <form class="visitor hidden" novalidate>
             <div class="visitor-fields">
               <h2 class="your-info"></h3>
               <label for="title">Title</label>
@@ -65,17 +67,25 @@
                 required
                 name="title"
                 id="title"
+                class="title-field"
+                aria-describedby="errorTitle"
                 type="text"
               />
+              <p  id="errorTitle" class="error titleError" ></p>
+
               <label for="fullname">Name</label>
               <input
                 value=""
                 required
                 maxlength="20"
                 name="fullname"
+                class="name-field"
                 id="fullname"
+                  aria-describedby="errorFullname"
                 type="text"
               />
+               <p  id="errorFullname" class="error fullnameError" hidden></p>
+
               <label for="mobile">Mobile number</label>
              <small id="mobile-hint"> Example: 07700 900123 </small>
               <input
@@ -83,9 +93,13 @@
                 required
                 pattern="^07\d{9}$"
                 name="mobile"
+                class="mobile-field"
                 id="mobile"
+                  aria-describedby="errorMobile"
                 type="text"
               />
+<p  id="errorMobile" class="error mobileError" hidden></p>
+
               <label for="carreg">Enter a valid UK registration</label>
               <small id="carreg-hint"> Example: AA51 AAA </small>
               <input
@@ -96,8 +110,10 @@
                 name="carreg"
                 class="carreg"
                 id="carreg"
+                  aria-describedby="errorCarreg"
                 type="text"
               />
+<p  id="errorCarreg" class="error carregError" hidden></p>
               <div class="car-info"></div>
               <input class="visitor-check-time" value="" name="checkinTime" readonly aria-readonly="true" type="text" />
                <div class="holiday-info"></div>

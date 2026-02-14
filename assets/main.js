@@ -8,22 +8,35 @@ Author URI: https://www.holmesportfolio.co.uk
 "use strict";
 
 // selectors
-//multi uses
+//fields ~
+const titlefield = document.querySelector(".title-field");
+const namefield = document.querySelector(".name-field");
+const mobilefield = document.querySelector(".mobile-field");
+// use carreginput
+//use searchField
+
+//error messages ~
+const titleError = document.querySelector(".titleError");
+const fullnameError = document.querySelector(".fullnameError");
+const mobileError = document.querySelector(".mobileError");
+const carregError = document.querySelector(".carregError");
+const findError = document.querySelector(".findError");
+//multi uses ~
 const form = document.querySelector(".visitor");
 const checkinButtons = document.querySelector(".hp-checkedin-buttons");
 const vDetails = document.querySelector(".visitor");
 const allFields = document.querySelectorAll(".visitor input");
 const thankYouM = document.querySelector(".Thanks");
-//check in
+//check in ~
 const youInfoH = document.querySelector(".your-info");
 const CheckinTime = document.querySelector(".visitor-check-time");
 const SubmitButton = document.querySelector(".hp-submit");
 const carreginput = document.querySelector(".carreg");
 const carInfo = document.querySelector(".car-info");
 const holidayInfo = document.querySelector(".holiday-info");
-//close view
+//close view ~
 const closeView = document.querySelector(".hp-close-view");
-//check out
+//check out ~
 const search = document.querySelector(".hp-check-out-search");
 const checkoutButtons = document.querySelector(".for-checkout");
 const searchForm = document.querySelector(".checked-in-search");
@@ -91,12 +104,7 @@ closeView.addEventListener("click", startView);
 //function for checkin
 function checkIn() {
   allFields.forEach((input) => {
-    if (
-      input.type === "checkbox" ||
-      input.hidden ||
-      input.name === "checkinTime"
-    )
-      return;
+    if (input.hidden || input.name === "checkinTime") return;
     input.readOnly = false;
   });
   youInfoH.textContent = "Enter your details";
@@ -134,10 +142,10 @@ async function getHolidays() {
 // Bank holiday details fetch actions End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // car reg details fetch actions start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-carreginput.addEventListener("blur", async function (e) {
+carreginput.addEventListener("input", async function (e) {
   const carreg = carreginput.value.trim().toUpperCase();
 
-  if (carreg.length >= 5 && carreg.length <= 8) {
+  if (carreg.length >= 7 && carreg.length <= 8) {
     const details = await vehicleDetails(carreg);
     carInfo.textContent =
       `Colour: ${details.colour}\n` +
@@ -162,6 +170,51 @@ function vehicleDetails(plate) {
 form.addEventListener("submit", function (e) {
   // add to prevent default for submit
   e.preventDefault();
+
+  //error message start
+
+  if (titlefield.validity.valid) {
+    titleError.hidden = true;
+    titleError.textContent = "";
+  } else {
+    titleError.hidden = false;
+    titleError.textContent = "Enter a title, it can be up to 6 characters";
+  }
+
+  if (namefield.validity.valid) {
+    fullnameError.hidden = true;
+    fullnameError.textContent = "";
+  } else {
+    fullnameError.hidden = false;
+    fullnameError.textContent = "Enter a full name";
+  }
+
+  if (mobilefield.validity.valid) {
+    mobileError.hidden = true;
+    mobileError.textContent = "";
+  } else {
+    mobileError.hidden = false;
+    mobileError.textContent =
+      "Enter a valid UK mobile number, starting with 07";
+  }
+
+  if (carreginput.validity.valid) {
+    carregError.hidden = true;
+    carregError.textContent = "";
+  } else {
+    carregError.hidden = false;
+    carregError.textContent = "Enter a vehicle registration number";
+  }
+  if (
+    !carreginput.validity.valid ||
+    !titlefield.validity.valid ||
+    !namefield.validity.valid ||
+    !mobilefield.validity.valid
+  ) {
+    return;
+  }
+
+  // error message end
 
   const dataArr = [...new FormData(form)];
   const data = Object.fromEntries(dataArr);
@@ -189,7 +242,7 @@ function checkOut(info) {
   fillform(info);
 
   allFields.forEach((input) => {
-    if (input.type === "checkbox" || input.hidden) return;
+    if (input.hidden) return;
     input.readOnly = true;
   });
   search.classList.add("hidden");

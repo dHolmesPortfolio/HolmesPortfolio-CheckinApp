@@ -8,6 +8,11 @@ Author URI: https://www.holmesportfolio.co.uk
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
               Main
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.error {
+  font-weight: 600;
+  color: #d40d0d;
+  margin: 0;
+}
 *,
 *::before,
 *::after {
