@@ -8,19 +8,25 @@ Author URI: https://www.holmesportfolio.co.uk
 "use strict";
 
 // selectors
+//multi uses
+const form = document.querySelector(".visitor");
+const checkinButtons = document.querySelector(".hp-checkedin-buttons");
+const vDetails = document.querySelector(".visitor");
+const allFields = document.querySelectorAll(".visitor input");
+const thankYouM = document.querySelector(".Thanks");
+//check in
 const youInfoH = document.querySelector(".your-info");
 const CheckinTime = document.querySelector(".visitor-check-time");
-const checkinButtons = document.querySelector(".hp-checkedin-buttons");
+const SubmitButton = document.querySelector(".hp-submit");
+const carreginput = document.querySelector(".carreg");
+const carInfo = document.querySelector(".car-info");
+//close view
 const closeView = document.querySelector(".hp-close-view");
+//check out
 const search = document.querySelector(".hp-check-out-search");
-const vDetails = document.querySelector(".visitor");
 const checkoutButtons = document.querySelector(".for-checkout");
 const searchForm = document.querySelector(".checked-in-search");
-const SubmitButton = document.querySelector(".hp-submit");
-const allFields = document.querySelectorAll(".visitor input");
-const form = document.querySelector(".visitor");
 const searchField = document.querySelector(".search-field");
-const thankYouM = document.querySelector(".Thanks");
 
 //tracks current mode and data
 let trackMode = "start";
@@ -102,6 +108,29 @@ function checkIn() {
   trackMode = "check in";
 }
 
+carreginput.addEventListener("blur", async function (e) {
+  const carreg = carreginput.value.trim().toUpperCase();
+
+  if (carreg.length >= 5 && carreg.length <= 8) {
+    const details = await vehicleDetails(carreg);
+    carInfo.textContent =
+      `Colour: ${details.colour}\n` +
+      `Make: ${details.make}\n` +
+      `Data type: ${details.TestData}`;
+  } else carInfo.textContent = "";
+  return;
+});
+
+// getting vehicle details fake api for Demo
+function vehicleDetails(plate) {
+  return Promise.resolve({
+    registration: plate,
+    colour: "Blue",
+    make: "Ford",
+    TestData: "Not real data",
+  });
+}
+
 // collects and stores data on submission (temp on demo)
 form.addEventListener("submit", function (e) {
   // add to prevent default for submit
@@ -154,7 +183,7 @@ searchForm.addEventListener("submit", function (e) {
   if (!checkoutDetails || checkoutDetails.checkoutTime) return;
   // pass checkout the data from the search as a param
   currentdata = checkoutDetails;
-  form.reset();
+  searchField.value = "";
   checkOut(checkoutDetails);
 });
 

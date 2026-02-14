@@ -92,8 +92,8 @@
                 value=""
                 required
                 maxlength="8"
-                pattern="^[A-Z]{2}[0-9]{2}\s?[A-Z]{3}$"
                 name="carreg"
+                class="carreg"
                 id="carreg"
                 type="text"
               />
@@ -128,10 +128,11 @@
           <li>It will have a check-in and check-out button</li>
           <li>Collect some data</li>
           <li>Record the time in and out automatically</li>
+          <li>shows nearest bank holiday</li>
         </ul>
         <p>
-          When a vehicle registration is entered, the system uses an external
-          API to retrieve vehicle details. All visit data can be stored securely
+          When a vehicle registration is entered, the system pretends to use a external
+          API to retrieve vehicle details(this is not done as it would need an API key). All visit data can be stored securely
           within a database (no data is stored in the demo version).
         </p>
         <p>This product also keeps in mind GDPR and WCAG</p>

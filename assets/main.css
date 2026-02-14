@@ -18,6 +18,12 @@ html {
   box-sizing: border-box;
 }
 
+.car-info,
+.holiday-info {
+  white-space: pre-line;
+  font-weight: 600;
+}
+
 .info ul {
   list-style: none;
 }

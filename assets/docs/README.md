@@ -6,7 +6,7 @@ This web application was created to showcase and practise JavaScript skills.
 - Collect some data
 - Record the time in and out automatically
 
-When a vehicle registration is entered, the system uses an external API to retrieve vehicle details. All visit data can be stored securely within a database (no data is stored in the demo version).
+When a vehicle registration is entered, the system uses an external API to retrieve vehicle details. All visit data can be stored securely within a database (no data is stored in the demo version, and no real api is used for car details due to api key needed).
 
 This product also keeps in mind GDPR and WCAG
 
@@ -64,7 +64,7 @@ The system collects the following information:
 - mobile number
 - Vehicle Registration Plate
 
-A full car registration is required before showing any data preview (GDPR compliance).
+A full car registration is required and matches before showing any data preview (GDPR compliance).
 
 ### Vehicle Lookup
 
