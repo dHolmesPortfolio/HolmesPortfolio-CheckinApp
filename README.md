@@ -6,7 +6,7 @@ This web application was created to showcase and practise JavaScript skills.
 - Collect some data
 - Record the time in and out automatically
 
-(no data is stored in the demo version, and no real api is used for car details due to api key needed, it does use the .gov.uk holiday API for the nearest holiday).
+(No data is stored in the demo version, and no real api is used for car details due to api key needed, It does use the .gov.uk holiday API for the nearest holiday).
 
 This product also keeps in mind GDPR and WCAG
 
@@ -61,7 +61,7 @@ The system collects the following information:
 
 - Name
 - Date and Time
-- mobile number
+- Mobile number
 - Vehicle Registration Plate
 
 A full car registration is required and matches before showing any data preview (GDPR compliance).
