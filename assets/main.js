@@ -10,11 +10,12 @@ Author URI: https://www.holmesportfolio.co.uk
 //tracks current mode
 let trackMode = "start";
 let visitors = [];
+let currentdata = [];
 // selectors
 const youInfoH = document.querySelector(".your-info");
 const CheckinTime = document.querySelector(".visitor-check-time");
 const CheckOutTime = document.querySelector(".visitor-checkout-time");
-const toggleOut = document.querySelector(".checkout-toggle");
+const checkOutbutton = document.querySelector(".checkout-toggle");
 const checkinButtons = document.querySelector(".hp-checkedin-buttons");
 const closeView = document.querySelector(".hp-close-view");
 const search = document.querySelector(".hp-check-out-search");
@@ -102,6 +103,7 @@ form.addEventListener("submit", function (e) {
   const dataArr = [...new FormData(form)];
   const data = Object.fromEntries(dataArr);
   data.carreg = data.carreg.trim().toUpperCase();
+  data.checkoutTime = "";
   visitors.push(data);
   thankYou(data.fullname, "in");
   form.reset();
@@ -127,8 +129,11 @@ searchForm.addEventListener("submit", function (e) {
   );
 
   const checkoutDetails = searched;
-  if (!checkoutDetails) return;
+  // stop search if already checkedout
+  if (!checkoutDetails || checkoutDetails.checkoutTime) return;
   // pass checkout the data from the search as a param
+  currentdata = checkoutDetails;
+  form.reset();
   checkOut(checkoutDetails);
 });
 
@@ -148,16 +153,15 @@ checkinButtons.addEventListener("click", function (e) {
 
 // check out Time
 
-toggleOut.addEventListener("click", function () {
-  CheckOutTime.value = dateT();
+checkOutbutton.addEventListener("click", function (e) {
+  e.preventDefault();
+  const d = dateT();
 
-  const remove = form.querySelector('[name="carreg"]').value;
-  const findr = visitors.findIndex((v) => v.carreg === remove);
-
-  if (findr === -1) return;
-  visitors.splice(findr, 1);
+  // adds check out date/time
+  currentdata.checkoutTime = d;
   form.reset();
-  thankYou(data.fullname, "out");
+  // thankyou 'out' message
+  thankYou(currentdata.fullname, "out");
 });
 
 closeView.addEventListener("click", startView);

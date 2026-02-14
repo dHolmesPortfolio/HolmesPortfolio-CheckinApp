@@ -1,7 +1,8 @@
 # improvements
 
+- add in the API call to show car info
 - Custom error messages?
 - mobile regex?
-- make readonly fields look readonly
 - add error when registration is wrong
-- thank you message auto close
+- fix navigation and message on deletion
+- what if the same license plate checked out and in? (customer returns)
