@@ -6,7 +6,7 @@ This web application was created to showcase and practise JavaScript skills.
 - Collect some data
 - Record the time in and out automatically
 
-When a vehicle registration is entered, the system uses an external API to retrieve vehicle details. All visit data can be stored securely within a database (no data is stored in the demo version, and no real api is used for car details due to api key needed).
+(no data is stored in the demo version, and no real api is used for car details due to api key needed, it does use the .gov.uk holiday API for the nearest holiday).
 
 This product also keeps in mind GDPR and WCAG
 
@@ -25,7 +25,7 @@ such as a tablet and kept on a local network.
 
 - As a visitor, I need to know if my car registration is incorrect.
 
-- As a visitor, I want my vehicle details using the government API, so it’s easier to confirm it’s the right car.
+- As a visitor, I want my vehicle details using the government API, so it’s easier to confirm it’s the right car. (not possible in Demo as this required an API key)
 
 - As a visitor, I want to toggle between check-in and check-out, so I don’t have to enter dates and times manually.
 
@@ -55,7 +55,7 @@ such as a tablet and kept on a local network.
 - All visit data is recorded
 - Data can be exported when required (not in demo)
 
-### Data Collection
+### Data Collection (DOES NOT STORE DATA, THIS IS A DEMO)
 
 The system collects the following information:
 
@@ -66,10 +66,9 @@ The system collects the following information:
 
 A full car registration is required and matches before showing any data preview (GDPR compliance).
 
-### Vehicle Lookup
+### Holiday aAPI Lookup
 
-- Connects to gov.uk to retrieve vehicle details
-- Stores vehicle information
+- Connects to gov.uk API to retrieve nearest holiday
 
 ### Check-in / Check-out Flow
 
@@ -78,18 +77,15 @@ A full car registration is required and matches before showing any data preview 
 3. Enters registration details
 4. System validates details
 5. Date and time added automatically
-6. Status is updated
-7. Data is stored securely (none stored in demo)
 
 ### Data Export & Retention
 
-- Security best practices are considered in the system design
 - The demo version focuses on core functionality rather than full enterprise security
 
 ### Security & GDPR
 
 - Registration plate required before data is visible
-- Complies with GDPR requirements
+- Complies with GDPR requirements - no data, just refresh
 
 - 📄 User Stories: \docs\UserStories.png
 - 🔄 Process Map: \docs\ProcessMap.png
