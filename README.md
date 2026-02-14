@@ -2,9 +2,10 @@
 
 This web application was created to showcase and practise JavaScript skills.
 
-- It has a check-in and check-out button
-- Collects some data and connects to an API
-- Record the time in and out automatically
+- It will have a check-in and check-out form/button
+- Collect some data from the checkin and show it at check out
+- Record the time in and out automatically and update on checkout
+- shows nearest bank holiday using the .GOV.UK API
 
 (No data is stored in the demo version, and no real api is used for car details due to api key needed, It does use the .gov.uk holiday API for the nearest holiday).
 
