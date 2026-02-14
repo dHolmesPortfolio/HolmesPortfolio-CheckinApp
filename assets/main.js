@@ -20,6 +20,7 @@ const CheckinTime = document.querySelector(".visitor-check-time");
 const SubmitButton = document.querySelector(".hp-submit");
 const carreginput = document.querySelector(".carreg");
 const carInfo = document.querySelector(".car-info");
+const holidayInfo = document.querySelector(".holiday-info");
 //close view
 const closeView = document.querySelector(".hp-close-view");
 //check out
@@ -105,9 +106,34 @@ function checkIn() {
   vDetails.classList.remove("hidden");
   checkoutButtons.classList.add("hidden");
   CheckinTime.value = dateT();
+  getHolidays();
   trackMode = "check in";
 }
+// Bank holiday details fetch actions start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+async function getHolidays() {
+  try {
+    const res = await fetch("https://www.gov.uk/bank-holidays.json");
+    const data = await res.json();
+
+    //
+    const events = data["england-and-wales"].events;
+
+    //work out today
+    const today = new Date().toISOString().split("T")[0];
+    const nearestHoliday = events.find(
+      (e) => e.date === today || e.date > today,
+    );
+    holidayInfo.textContent = `The nearest holiday is ${nearestHoliday.title}`;
+  } catch (err) {
+    console.log(err);
+    holidayInfo.textContent = `Could not load with error ${err}`;
+  }
+}
+
+// Bank holiday details fetch actions End ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+// car reg details fetch actions start ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 carreginput.addEventListener("blur", async function (e) {
   const carreg = carreginput.value.trim().toUpperCase();
 
@@ -130,6 +156,7 @@ function vehicleDetails(plate) {
     TestData: "Not real data",
   });
 }
+// car reg details fetch actions end ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // collects and stores data on submission (temp on demo)
 form.addEventListener("submit", function (e) {
@@ -168,6 +195,8 @@ function checkOut(info) {
   search.classList.add("hidden");
   checkoutButtons.classList.remove("hidden");
   vDetails.classList.remove("hidden");
+  holidayInfo.textContent = "";
+  carInfo.textContent = "";
   trackMode = "check out";
 }
 

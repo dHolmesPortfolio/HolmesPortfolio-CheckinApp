@@ -77,10 +77,11 @@
                 type="text"
               />
               <label for="mobile">Mobile number</label>
+             <small id="mobile-hint"> Example: 07700 900123 </small>
               <input
                 value=""
                 required
-                maxlength="20"
+                pattern="^07\d{9}$"
                 name="mobile"
                 id="mobile"
                 type="text"
@@ -99,6 +100,7 @@
               />
               <div class="car-info"></div>
               <input class="visitor-check-time" value="" name="checkinTime" readonly aria-readonly="true" type="text" />
+               <div class="holiday-info"></div>
               <div class="for-checkout">
                 <button class="checkout-toggle hp-buttons" type="submit">Check out</button>
                 <input
