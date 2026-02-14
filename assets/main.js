@@ -135,7 +135,7 @@ async function getHolidays() {
     holidayInfo.textContent = `The nearest holiday is ${nearestHoliday.title}`;
   } catch (err) {
     console.log(err);
-    holidayInfo.textContent = `Could not load with error ${err}`;
+    holidayInfo.textContent = `Nearest holiday could not load with error ${err}`;
   }
 }
 
