@@ -256,32 +256,32 @@ function checkOut(info) {
 // search submission actions
 searchForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  const searched = visitors.find(
-    (v) => v.carreg === searchField.value.trim().toUpperCase(),
+  const tsearch = searchField.value.trim().toUpperCase();
+
+  let matches = visitors.filter(
+    (v) => v.carreg.trim().toUpperCase() === tsearch,
   );
-  const checkoutDetails = searched || "";
-  console.log(checkoutDetails);
-  //use searchField
-  if (checkoutDetails.checkoutTime.value) {
+
+  if (matches.length === 0) {
     findError.hidden = false;
-    findError.textContent = "You have already checked out";
+    findError.textContent = "Nothing was found, try again or check in first";
     return;
   }
-  // if (checkoutDetails) {
-  //   findError.hidden = true;
-  //   findError.textContent = "";
-  // } else if (checkoutDetails.checkoutTime.value) {
-  //   findError.hidden = false;
-  //   findError.textContent = "You have already checked out";
-  //   return;
-  // } else {
-  //   findError.hidden = false;
-  //   findError.textContent = "Nothing was found, try again or check in first";
-  //   return;
-  // }
+
+  matches = [...matches].reverse().find((v) => !v.checkoutTime);
+
+  const checkoutDetails = matches;
+  console.log("checkoutDetails:", checkoutDetails);
+  console.log("checkoutTime:", checkoutDetails?.checkoutTime);
+  //use searchField
+
+  if (checkoutDetails) {
+    findError.hidden = true;
+    findError.textContent = "";
+  }
+
   findError.textContent = "";
-  // stop search if already checkedout
-  if (!checkoutDetails || checkoutDetails.checkoutTime) return;
+
   // pass checkout the data from the search as a param
   currentdata = checkoutDetails;
   searchField.value = "";
