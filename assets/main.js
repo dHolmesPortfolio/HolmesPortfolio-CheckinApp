@@ -45,7 +45,7 @@ const searchField = document.querySelector(".search-field");
 //tracks current mode and data
 let trackMode = "start";
 let visitors = [];
-let currentdata = "";
+let currentdata = null;
 
 // get the date right now
 function dateT() {
@@ -259,8 +259,18 @@ searchForm.addEventListener("submit", function (e) {
   const searched = visitors.find(
     (v) => v.carreg === searchField.value.trim().toUpperCase(),
   );
-
   const checkoutDetails = searched;
+  console.log(checkoutDetails);
+  //use searchField
+  if (checkoutDetails) {
+    search.hidden = true;
+    findError.textContent = "";
+  } else {
+    findError.hidden = false;
+    findError.textContent = "Nothing was found, try again or check in first";
+    return;
+  }
+
   // stop search if already checkedout
   if (!checkoutDetails || checkoutDetails.checkoutTime) return;
   // pass checkout the data from the search as a param
