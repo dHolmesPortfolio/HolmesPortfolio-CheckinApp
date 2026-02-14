@@ -259,18 +259,27 @@ searchForm.addEventListener("submit", function (e) {
   const searched = visitors.find(
     (v) => v.carreg === searchField.value.trim().toUpperCase(),
   );
-  const checkoutDetails = searched;
+  const checkoutDetails = searched || "";
   console.log(checkoutDetails);
   //use searchField
-  if (checkoutDetails) {
-    search.hidden = true;
-    findError.textContent = "";
-  } else {
+  if (checkoutDetails.checkoutTime.value) {
     findError.hidden = false;
-    findError.textContent = "Nothing was found, try again or check in first";
+    findError.textContent = "You have already checked out";
     return;
   }
-
+  // if (checkoutDetails) {
+  //   findError.hidden = true;
+  //   findError.textContent = "";
+  // } else if (checkoutDetails.checkoutTime.value) {
+  //   findError.hidden = false;
+  //   findError.textContent = "You have already checked out";
+  //   return;
+  // } else {
+  //   findError.hidden = false;
+  //   findError.textContent = "Nothing was found, try again or check in first";
+  //   return;
+  // }
+  findError.textContent = "";
   // stop search if already checkedout
   if (!checkoutDetails || checkoutDetails.checkoutTime) return;
   // pass checkout the data from the search as a param
