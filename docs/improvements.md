@@ -6,3 +6,4 @@
 - add error when registration is wrong
 - fix navigation and message on deletion
 - what if the same license plate checked out and in? (customer returns)
+- clean code into modules
