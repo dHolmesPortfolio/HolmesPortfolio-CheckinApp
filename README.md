@@ -1,5 +1,7 @@
 # HolmesPortfolio check-in app
 
+Demo : https://checkin.holmesportfolio.co.uk
+
 This web application was created to showcase and practise JavaScript skills.
 
 - It will have a check-in and check-out form/button
